@@ -1,0 +1,2 @@
+MINION = '/minion'
+BOT = '/bot'

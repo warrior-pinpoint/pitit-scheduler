@@ -4,8 +4,15 @@ url = "https://pypi.org/simple"
 verify_ssl = true
 
 [dev-packages]
+ipdb = "*"
+pytest-env = "*"
+pytest-cov = "*"
 
 [packages]
+ptit-wizard = {git = "https://github.com/warrior-pinpoint/ptit-wizard.git",ref = "master", subdirectory="louis"}
+pytest = "*"
+flask = "==1.1.1"
+mmh3 = "==2.5.1"
 
 [requires]
 python_version = "3.6"
