@@ -9,6 +9,7 @@ proposed in the original white paper that introduced Rendezvous hashing.
 
 import mmh3
 import json
+import uuid
 
 # variable from paper
 a = 1103515245
@@ -48,13 +49,35 @@ def hash(key, nodes):
     return w_n[1]
 
 
+def print_info(nodes):
+    for k, v in nodes.items():
+        print('Server {0} quản lý {1} Object'.format(k, len(v)))
+
+
+def input_kichban1():
+    return {1: [], 2: [], 3: [], 4: [], 5: []}
+
+
+def input_kichban2():
+    nodes = {1: [], 2: [], 3: [], 4: [], 5: []}
+    add_10000_object(nodes)
+    return nodes
+
+def add_10000_object(nodes):
+    for _ in range(10000):
+        uid = str(uuid.uuid4())
+        n = hash(uid, nodes.keys())
+        nodes[n].append(uid)
+
+
 if __name__ == "__main__":
-    import uuid, time
+    nodes = input_kichban2()
+    print('Trạng thái ban đầu:')
+    print_info(nodes)
+    nodes = input_kichban1()
+    nodes.update({6: [], 7: [], 8: [], 9: [], 10: []})
 
-    node = {1: [], 2: [], 3: []}
-
-    then = time.time()
-    for _ in range(100000):
-        uid = json.dumps({str(uuid.uuid4()): str(uuid.uuid4())})
-        n = hash(uid, node.keys())
-        node[n].append(uid)
+    add_10000_object(nodes)
+    add_10000_object(nodes)
+    print('Trạng thái sau khi thêm 100000 Oject')
+    print_info(nodes)

@@ -22,3 +22,6 @@ class PinpointApiClient:
         resp = self._client.patch(url=urls.BOT + '/' + bot_id, data=data)
         print(resp.json())
         return resp
+
+    def get_bots(self, minion_id):
+        return self._client.get(url=urls.BOT + '?minion={0}'.format(minion_id))
